@@ -5,13 +5,13 @@
 	<record id="global_search_config_tree_view" model="ir.ui.view">
 		<field name="name">global.search.bizople.tree.view</field>
 		<field name="model">global.search.bizople</field>
-		<field name="type">tree</field>
+		<field name="type">list</field>
 		<field name="arch" type="xml">
-			<tree string="Global Search">
+			<list string="Global Search">
 				<field name="name"/>
 				<field name="global_model_id" required="1"/>
 				<field name="global_field_ids" widget="many2many_tags" optional="hide"/>
-			</tree>
+			</list>
 		</field>
 	</record>
 
@@ -40,7 +40,7 @@
         <field name="name">Global Search</field>
         <field name="type">ir.actions.act_window</field>
         <field name="res_model">global.search.bizople</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">list,form</field>
     </record>
 
     <!-- <menuitem action="spiffy_theme_backend_ent.action_global_search_config" id="global_search_config_menuitem" parent="spiffy_theme_backend_ent.bizople_backend_theme_configuration_mainmenu" sequence="9"/> -->
