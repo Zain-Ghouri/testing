@@ -10,7 +10,7 @@ class Http(models.AbstractModel):
 
     def session_info(self):
         # Show company change option even if single company available 
-        is_bg_color = request.session.bg_color
+        is_bg_color = getattr(request.session, 'bg_color', False)
         res = super(Http, self).session_info()
         company = self.env.company
         

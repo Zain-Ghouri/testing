@@ -10,22 +10,17 @@ from odoo.http import request
 class PwaMain(http.Controller):
 
     def get_asset_urls(self, asset_xml_id):
-        qweb = request.env['ir.qweb'].sudo()
-        assets = qweb._get_asset_nodes(asset_xml_id, {}, True, True)
-        urls = []
-        for asset in assets:
-            if asset[0] == 'link':
-                urls.append(asset[1]['href'])
-            if asset[0] == 'script':
-                urls.append(asset[1]['src'])
-        return urls
+        # Odoo 18: ir.qweb._get_asset_nodes removed; use ir.asset model instead
+        assets = request.env['ir.asset'].sudo().search([
+            ('bundle', '=', asset_xml_id),
+            ('active', '=', True),
+        ])
+        return [asset.path for asset in assets if asset.path]
 
     @http.route('/service_worker.js', type='http', auth="public", sitemap=False)
     def service_worker(self):
         qweb = request.env['ir.qweb'].sudo()
         company_id = request.env.company.id
-        lang_code = request.env.lang
-        current_lang = request.env['res.lang']._lang_get(lang_code)
         mimetype = 'text/javascript;charset=utf-8'
         content = qweb._render('spiffy_theme_backend_ent.service_worker', {
             'company_id': company_id,

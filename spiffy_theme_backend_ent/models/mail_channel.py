@@ -23,17 +23,20 @@ class MailThread(models.AbstractModel):
 
     def _notify_thread(self, message, msg_vals=False, **kwargs):
         rdata = super(MailThread, self)._notify_thread(message, msg_vals=msg_vals, **kwargs)
-        self._notify_record_firebase(message, rdata, msg_vals, **kwargs)
+        if rdata:
+            self._notify_record_firebase(message, rdata, msg_vals, **kwargs)
         return rdata
-    
+
     def _notify_record_firebase(self, message, rdata, msg_vals=False, **kwargs):
         """ We want to send a Cloud notification for every mentions of a partner
         and every direct message. We have to take into account the risk of
         duplicated notifications in case of a mention in a channel of `chat` type.
         """
-        
-        notif_pids = [r['id'] for r in rdata if r['active']]
-        no_inbox_pids = [r['id'] for r in rdata if r['active'] and r['notif'] != 'inbox']
+        if not rdata or not isinstance(rdata, list):
+            return
+
+        notif_pids = [r['id'] for r in rdata if r.get('active')]
+        no_inbox_pids = [r['id'] for r in rdata if r.get('active') and r.get('notif') != 'inbox']
         if not notif_pids:
             return
 
@@ -161,7 +164,7 @@ class MailThread(models.AbstractModel):
                     }
                 }
                 answer = requests.post(url, json=data, headers=headers)
-        except:
+        except Exception:
             return
 
 class Channel(models.Model):
@@ -173,9 +176,7 @@ class Channel(models.Model):
         chat_channels = self.filtered(lambda channel: channel.channel_type == 'chat')
         channel_channels = self.filtered(lambda channel: channel.channel_type == 'channel')
         if chat_channels:
-            # modify rdata only for calling super. Do not deep copy as we only
-            # add data into list but we do not modify item content
-            channel_rdata = rdata.copy()
+            channel_rdata = list(rdata) if rdata else []
             channel_rdata += [
                 {'id': partner.id,
                  'share': partner.partner_share,
@@ -187,7 +188,7 @@ class Channel(models.Model):
                 for partner in chat_channels.mapped("channel_partner_ids")
             ]
         elif channel_channels:
-            channel_rdata = rdata.copy()
+            channel_rdata = list(rdata) if rdata else []
             channel_rdata += [
                 {'id': partner.id,
                  'share': partner.partner_share,

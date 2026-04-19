@@ -4,7 +4,7 @@
 {
     'name': 'Spiffy Backend Enterprise Theme',
     'category': 'Themes/Backend',
-    'version': '1.4',
+    'version': '18.0.1.4.0',
     'author': 'Bizople Solutions Pvt. Ltd.',
     'website': 'https://www.bizople.com/',
     'summary': 'The ultimate Odoo Backend theme with the most advanced key features of all time. Get your own personalized view while working on the Backend system with a wide range of choices. Spiffy theme has 3 in 1 Theme Style, Progressive Web App, Fully Responsive for all apps, Configurable Apps Icon, App Drawer with global search, RTL & Multi-Language Support, and many other key features.',
@@ -136,7 +136,6 @@
             '/spiffy_theme_backend_ent/static/src/scss/loginpage.scss',
         ],
     },
-    'live_test_url': 'https://bit.ly/spiffy-v17',
     'images': [
         'static/description/spiffy_cover.png',
         'static/description/spiffy_screenshot.gif',
