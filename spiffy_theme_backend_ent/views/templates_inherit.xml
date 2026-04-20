@@ -3,14 +3,14 @@
 # See LICENSE file for full copyright and licensing details. -->
 <odoo>
     <template id="biz_responsive_web_layout_template" inherit_id="web.layout" name="Bizople Responsive Web Layout">
-        <xpath expr="//meta[last()]" position="after">
+        <xpath expr="//meta[last()]" position="after" optional="True">
             <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
             <link rel="stylesheet" type="text/css" href="/spiffy_theme_backend_ent/static/lib/RemixIcon/remixicon.css" />
         </xpath>
     </template>
 
     <template id="biz_webclient_bootstrap_enterprise_inherit" inherit_id="web.webclient_bootstrap" name="webclient bootstrap enterprise inherit">
-        <xpath expr="//t[@t-set='head_web']" position="replace">
+        <xpath expr="//t[@t-set='head_web']" position="replace" optional="True">
             <t t-set="head_web">
                 <t t-set="company" t-value="request.env.company.sudo()"></t>
                 <t t-set="color_code" t-value="company.spiffy_toobar_color and company.spiffy_toobar_color or '#0097a7'"/>
@@ -47,8 +47,8 @@
         </xpath>
     </template>
 
-    <template id="spiffy_web_neutralize_banner_template"  name="Neutralize Banner" inherit_id="web.neutralize_banner">
-        <xpath expr="//span[@id='oe_neutralize_banner']/.." position="attributes">
+    <template id="spiffy_web_neutralize_banner_template" name="Neutralize Banner" inherit_id="web.neutralize_banner">
+        <xpath expr="//span[@id='oe_neutralize_banner']/.." position="attributes" optional="True">
             <attribute name="class">oe_neutralize_banner_active</attribute>
         </xpath>
     </template>

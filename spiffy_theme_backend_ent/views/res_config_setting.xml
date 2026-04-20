@@ -28,7 +28,7 @@
                                         <field name='backend_menubar_logo_icon' widget="image" />
                                     </div>
                                 </div>
-                                
+
                                 <div class="col-12 col-lg-6 o_setting_box" id="config_settings_tab_name">
                                     <div class="o_setting_right_pane">
                                         <p class="o_form_label"><label for="tab_name"/></p>
@@ -36,14 +36,14 @@
                                     </div>
                                 </div>
 
-                                <div class="col-12 col-lg-6 o_setting_box" id="config_settings_tab_name">
+                                <div class="col-12 col-lg-6 o_setting_box" id="config_settings_theme_level">
                                     <div class="o_setting_right_pane">
                                         <p class="o_form_label"><label for="backend_theme_level"/></p>
                                         <field name='backend_theme_level' groups="base.group_system"/>
                                     </div>
                                 </div>
 
-                                <div class="col-12 col-lg-6 o_setting_box" id="config_settings_tab_name">
+                                <div class="col-12 col-lg-6 o_setting_box" id="config_settings_login_style">
                                     <div class="o_setting_right_pane mb-3">
                                         <p class="o_form_label"><label for="login_page_style"/></p>
                                         <field name='login_page_style' groups="base.group_system"/>
@@ -63,12 +63,12 @@
                                         <field name='login_page_background_img' widget="image" groups="base.group_system" required="show_bg_image==True"/>
                                     </div>
                                 </div>
-                                <div class="col-12 col-lg-6 o_setting_box" id="config_settings_tab_name">
+                                <div class="col-12 col-lg-6 o_setting_box" id="config_settings_login_colors">
                                     <div class="o_setting_right_pane mb-3">
                                         <p class="o_form_label"><label for="login_page_background_color"/></p>
                                         <field name='login_page_background_color' widget="color" groups="base.group_system"/>
                                     </div>
-                                    
+
                                     <div class="o_setting_right_pane">
                                         <p class="o_form_label"><label for="login_page_text_color"/></p>
                                         <field name='login_page_text_color' widget="color" groups="base.group_system"/>
@@ -160,14 +160,6 @@
                             </block>
                         </div>
                     </app>
-                </xpath>
-
-                <xpath expr="//block[@name='about_setting_container']//img[@src='/base_setup/static/src/img/google_play.png']/.." position="attributes">
-                    <attribute name="href">https://play.google.com/store/apps/details?id=com.bizople.spiffy</attribute>
-                </xpath>
-
-                <xpath expr="//block[@name='about_setting_container']//img[@src='/base_setup/static/src/img/app_store.png']/.." position="attributes">
-                    <attribute name="href">https://apps.apple.com/in/app/spiffy-odoo-mobile-app/id6449771773</attribute>
                 </xpath>
             </field>
         </record>
