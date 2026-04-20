@@ -34,7 +34,7 @@
             <attribute name="t-attf-class">card-body #{company.login_page_style} #{backend_theme_data['config_vals'].color_pallet if not backend_theme_data['config_vals'].use_custom_colors else ''}</attribute>
         </xpath>
 
-        <xpath expr="//div[hasclass('card-body')]//div[contains(@t-attf-class, 'text-center pb-3 border-bottom')]/img" position="attributes" optional="True">
+        <xpath expr="//div[hasclass('card-body')]//div[contains(@class, 'text-center') and contains(@class, 'border-bottom')]/img" position="attributes" optional="True">
             <attribute name="style"></attribute>
             <attribute name="class" add="img img-fluid w-50 mx-auto" separator=" "></attribute>
             <attribute name="t-attf-src">/web/image/res.company/#{company.id}/logo</attribute>
@@ -50,7 +50,7 @@
     </template>
 
     <template id="web_login_inherit" name="Web Login Inherit" inherit_id="web.login">
-        <xpath expr="//form[hasclass('oe_login_form')]" position="before" optional="True">
+        <xpath expr="//form[contains(@t-attf-class, 'oe_login_form')]" position="before" optional="True">
             <t t-set="company" t-value="request.env.company.sudo()"></t>
             <t t-set="backend_theme_data" t-value="company.get_login_page_data()"/>
 
@@ -62,7 +62,7 @@
         </xpath>
 
         <!-- LOGIN FORM BUTTONS CHANGES -->
-        <xpath expr="//div[contains(@t-attf-class, 'input-group')]//a" position="attributes" optional="True">
+        <xpath expr="//div[hasclass('input-group')]//a" position="attributes" optional="True">
             <attribute name="t-att-style">use_custom_colors and 'border-color:'+light_primary_bg_color+'; background-color:'+light_primary_bg_color+'; color:'+light_primary_text_color+';'</attribute>
         </xpath>
 
@@ -83,10 +83,10 @@
         </xpath>
 
         <!-- LOGIN FORM BUTTONS CHANGES -->
-        <xpath expr="//div[contains(@t-attf-class, 'oe_login_buttons')]" position="attributes" optional="True">
+        <xpath expr="//div[hasclass('oe_login_buttons')]" position="attributes" optional="True">
             <attribute name="t-attf-style">color: #{login_page_text_color_3_4_style};</attribute>
         </xpath>
-        <xpath expr="//div[contains(@t-attf-class, 'oe_login_buttons')]//button[hasclass('btn-primary')]" position="attributes" optional="True">
+        <xpath expr="//div[hasclass('oe_login_buttons')]//button[hasclass('btn-primary')]" position="attributes" optional="True">
             <attribute name="t-att-style">use_custom_colors and 'background-color:'+light_primary_bg_color+'; color:'+light_primary_text_color+';'</attribute>
             <attribute name="class" separator=" " add="border-0"/>
         </xpath>
